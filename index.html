@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Piotr Husiatyński</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Piotr Husiatyński">
+    <style type="text/css">
+        body    { font-family: Helvetica, arial, sans-serif; font-size: 1.1em; line-height: 1.4em; width: 600px; margin: 30px auto; }
+        h1      { font-size: 1.7em; }
+        h2      { font-size: 1.2em; }
+        h1, h2  { border-bottom: 2px solid #BCD8E8; padding: 4px 0; margin: 40px 0 20px 0; }
+        a       { color: #4183C4; text-decoration: none; }
+        small   { font-size: 0.5em; }
+        .social { text-align: center; }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <h1>Piotr Husiatyński <a href="http://husio.github.io">@husio.github.io</a></h1>
+    </header>
+    <section id="about">
+        <div id="photo">
+            <img src="https://secure.gravatar.com/avatar/a3ce59cca05aeee059f596acb01b38f7?s=150" alt="">
+        </div>
+        <p>
+            I am a programmer with <span id="experience-time">a log of</span> work experience in software development.
+        </p>
+        <p>
+            I like to program in <a href="http://www.python.org">Python</a>,
+            <a href="http://golang.org/">Go</a> and <small><em>(less)</em></small> <a href="http://developer.mozilla.org/en-US/docs/JavaScript">JavaScript</a>.
+        </p>
+
+        <h2>Writings</h2>
+        All my writings are available <a href="https://github.com/husio/husio.github.com/writings">on github</a>.
+
+
+        <h2>Social links</h2>
+        <div class="social">
+            <a href="https://github.com/husio" target="_blank">Github</a> &bull;
+            <a href="https://bitbucket.org/Husio" target="_blank">Bitbucket</a> &bull;
+            <a href="https://twitter.com/PiotrHusiatyski" target="_blank">Twitter</a> &bull;
+            <a href="http://www.linkedin.com/pub/piotr-husiaty%C5%84ski/30/a46/68a" target="_blank">LinkedIn</a> &bull;
+            <a href="https://maps.google.com/maps?q=50.924949,6.934819&sll=50.928114,6.940913&z=7" target="_blank">Where to find me</a> &bull;
+            <a class="mailme" href="mailto:nospamplease"></a> &bull;
+            <a class="jabberme"  href="xmpp:nospamplease"></a> &bull;
+            <a class="callme" href="tel:0000000000"></a>
+        </div>
+    </section>
+<script src="http://zeptojs.com/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+$(function () {
+    var $w = $(window);
+
+    var years = (new Date()).getFullYear() - 2007;
+    $('#experience-time').text('more than ' + years + ' years of');
+
+    var m = (['p', 'husiaty', 'nski@', 'gma', 'il.com']).join('');
+    $('.mailme').attr('href', 'mailto:' + m).html(function (_, t) { if (!$(this).data('nochange')) { return m + t; } });
+    var j = (['hu', 'sio', '@', 'ubunt', 'u.pl']).join('');
+    $('.jabberme').attr('href', 'xmpp:' + j).html(function (_, t) { return j + t });
+    var p = (['(+48) ', ' &nbsp; 883 11', '3', ' 617']).join('');
+    $('.callme').attr('href', 'tel:' + p.replace(/[^\d\+]/g, '')).html(function (_, t) { return p + t });
+
+    var $j = $('#job-info');
+    $.ajax({url: 'http://messageoak.appspot.com', dataType: 'jsonp'}).always(function (resp) {
+        $j.append(resp.html);
+    });
+    $('#job-info-toggle').click(function (e) {
+        var $ji = $('#job-info'),
+            $t = $ji.find('textarea:first'),
+            $f = $ji.find('form:first');
+        if ($j.is(':visible')) {
+            return true;
+        }
+        $ji.slideDown().find('[data-action="cancel"]').click(function () { $ji.slideUp(); return false; });
+        $t.css({padding: 10, width: $t.width() - 20}).focus();
+        $f.submit(function (e) {
+            e.preventDefault();
+            var $p = $('<i class="class="icon-spinner icon-spin icon-2x pull-left"></i>');
+            $f.find('.actions').append($p);
+            MessageOak.post({content: $t.val()}).always(function () {
+                $p.remove();
+                $ji.slideUp();
+            })
+        });
+        return false
+    });
+});
+</script>
+
+    </body>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34543963-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</html>

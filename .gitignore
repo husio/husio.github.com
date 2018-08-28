@@ -3,4 +3,3 @@
 *.sw[po]
 
 !.gitignore
-_site

@@ -4,29 +4,41 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
     <style>
-
-body          { font-size: 1em; max-width: 60em; padding: 3em; margin: 0 auto; line-height: 2.2; }
-a, a:visited  { text-decoration: none; color: #005396; }
+:root {
+  --font-color: #000;
+  --color-second: #0963bd;
+  --color-link: #005396;
+}
+body          { font-size: 1em; max-width: 60em; padding: 3em; margin: 0 auto; line-height: 2.2; color: var(--font-color); font-family: Arial, Helvetica; }
+a, a:visited  { text-decoration: none; color: var(--color-link); }
 a:hover       { text-decoration: underline; }
-h1            { font-size: 180%; }
-h2            { font-size: 140%; }
+h1            { font-size: 220%; }
+h2            { font-size: 180%; margin: 1em 0 0.4em 0; color: var(--color-second); }
+.sep          { height: 2em; }
 
-header.contact-details      { margin: 0 0 2em 0; }
-header.contact-details p    { margin: 0.5em 0; }
+.container { display: flex; align-content: space-between; gap: 2em; }
+.container .nav-left { flex: 0 0 24%; }
+.container .nav-right {}
 
-article                     { margin: 0 0 3em 0}
-article header .duration    { font-weight: bold; color: #333; }
+header.details p      { margin: 0.5em 0; }
+header.details a      { color: var(--font-color); }
+header.details .label { display: block; line-height: 1.3; color: var(--color-second); text-transform: uppercase; font-weight: bold; }
+
+article                     { margin: 0 0 3em 0; }
+article header .duration    { font-weight: bold; color: #333; float: right;}
 article header .company     { font-weight: bold; font-size: 130%; margin-right: 1.2em; }
 article header .technology  { color: #333; font-family: monospace; display: block; line-height: normal; padding: 0.2em 0 0 0; }
-article header .freelancer  { border: 2px solid #ddd; font-size: 60%; font-style: italic; color: #616161; padding: 0.2em 0.5em; border-radius: 0.5em; margin-left: 0.8em; }
+article header .job-title   { margin: 0 2em 0 0; }
+article header .freelancer  { }
+article header .first-line { display: block; line-height: 1.2;}
 
-body.compact article.old             { margin: 1.4em 0; }
+body.compact article.old             { margin: 2.2em 0; }
 body.compact article.old p           { display: none; }
 body.compact article.old .technology { display: block; width: 100%; }
 
 @media print                       {
   @page       { size: A4; margin: 8mm 8mm; }
-  body        { font-size: 10pt;  padding: 0 2em; line-height: 1.4; }
+  body        { font-size: 9.5pt;  padding: 0 2em; line-height: 1.5; }
   article     { margin: 1.9em 0 1em; break-inside: avoid; }
 }
     </style>
@@ -35,262 +47,212 @@ body.compact article.old .technology { display: block; width: 100%; }
 
     <h1>Piotr Husiatyński</h1>
 
-    <header class="contact-details">
-      <p id="myaddr"><script>window.myaddr.innerHTML = "Em" + "ail: " + " phu" + "siatynski" + "&#64;" + "gma" + "il." + "com"</script></p>
-      <p>Website: <a href="https://husio.github.io">husio.github.io</a></p>
-      <p>GitHub: <a href="https://github.com/husio">github.com/husio</a></p>
-      <p>Location: Berlin, Germany</p>
-    </header>
+    <div class="container">
+      <div class="nav-left">
+        <header class="details">
+          <p><span class="label">Email</span> <a href="mailto:phusiatynski@gmail.com">phusiatynski@gmail.com</a></p>
+          <p><span class="label">Phone</span> +48 883113617</p>
+          <p><span class="label">Website</span> <a href="https://husio.github.io">husio.github.io</a></p>
+          <p><span class="label">GitHub</span> <a href="https://github.com/husio">github.com/husio</a></p>
+          <p><span class="label">Location</span> Berlin, Germany</p>
+        </header>
+      </div>
 
-    <h2>Summary</h2>
-
-    <article>
-      <p>
-      I’m a software engineer, passionate about distrubuted systems.
-      I have a good understanding and experience with microservice architecture and event sourcing pattern.
-      My "<a href="https://mcfunley.com/choose-boring-technology">boring technology</a>" choices are Go, Redis/Valkey and PostgreSQL, although I like to try out new tools and ideas as well.
-      </p>
-
-      <p>
-      I live in Berlin, Germany. I speak English, Polish and basic German.
-      </p>
-
-    </article>
+      <div class="nav-right">
+        <article>
+          <p>I am a passionate software engineer with a focus on building scalable applications. Strong background in breaking down large problems into smaller, manageable microservices and utilizing event sourcing for robust system creation.</p>
+          <p>Proficient in Go, Python, Redis/Valkey, and PostgreSQL; eager to explore new technologies. Focused on finding creative solutions and transforming ideas into reality.</p>
+          <p>Based in Berlin, I’m fluent in English and Polish and can hold conversations in German.</p>
+        </article>
+      </div>
+    </div>
 
 
-    <h2>Job Experience</h2>
-
+    <h2>Work Experience</h2>
     <article>
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">go-e</span>
+          <span class="job-title">Senior Backend Engineer</span>
           <span class="duration">Mar 2022 - July 2024</span>
         </span>
         <span class="technology">Go, Redis, NATS, Postgres, ClickHouse, Prometheus, gRPC, K3s, Terraform</span>
       </header>
-      <p>
-      Being part of the team that built the next generation car charging device, I was leading the backend design and implementation.
-      Initially the project was built around gRPC, and later due to new requirements I have updated the implementation to use the Open Charge Point Protocol.
-      </p>
-      <p>
-      In order to accomodate increasing traffic on the legacy Node.js implementaion, I was tasked with designing a new backend which I then also implemented in Go.
-      The new backend allows to dynamically increase the limit of connected devices, provides high availability and reliability, and allows for faster development.
-      My responsibilities included choosing the most suitable technologies, hosting platform, deciding how to manage our infrastructure and how to test, deploy, run and monitor our applications.
-      </p>
+      <p>Led the design of the backend architecture and development for a next-generation car charging device. Successfully hired and mentored a backend engineer to scale the team and accelerate development.
+      Initially architected and implemented the backend using gRPC, subsequently refactoring to align with the Open Charge Point Protocol based on evolving requirements.</p>
+      <p>To address performance bottlenecks in the legacy Node.js backend, I designed and implemented a high-performance Go-based solution. This new architecture enhanced scalability, reliability, and development velocity by enabling dynamic device management, high availability, and streamlined infrastructure management.</p>
+      <p>Key responsibilities included technology selection, platform optimization, infrastructure provisioning, and comprehensive application lifecycle management, encompassing testing, deployment, operation, and monitoring.</p>
     </article>
 
     <article>
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Confio</span>
+          <span class="job-title freelancer">Freelancer</span>
           <span class="duration">Aug 2021 - Jan 2022</span>
-          <span class="freelancer">freelancer</span>
         </span>
         <span class="technology">Go, Postgres, Prometheus, Tendermint</span>
       </header>
-      <p>
-      After joining a small team, I have designed and built a blockchain indexer and explorer from scratch.
-      </p>
+      <p>Joined a small team to design and build a blockchain indexer and explorer from inception.</p>
     </article>
 
 
     <article>
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Onefootball</span>
+          <span class="job-title freelancer">Freelancer</span>
           <span class="duration">Aug 2021 - Jan 2022 and Feb 2020 - Oct 2020</span>
-          <span class="freelancer">freelancer</span>
         </span>
         <span class="technology">Go, PostgreSQL, MySQL, RabbitMQ, Kubernetes</span>
       </header>
-      <p>
-      Together with my team, I was extending and improving functionality used by partners adding content to the Onefootball platform.
-      </p>
-      <p>
-      After thoroughly examining the existing user management functionalities, and finding various issues including security vulnerabilities I was leading the process of implementation  and migration to more secure alternatives.
-      </p>
+      <p>Collaborated with a team to enhance and expand functionalities for partners contributing content to the Onefootball platform.</p>
+      <p>Conducted a comprehensive analysis of existing user management functionalities, identifying critical security vulnerabilities. Led the initiative to design, implement and migrate to more secure systems.</p>
     </article>
 
 
 
     <article>
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">IOV</span>
+          <span class="job-title freelancer">Freelancer</span>
           <span class="duration">Oct 2018 - Feb 2020</span>
-          <span class="freelancer">freelancer</span>
         </span>
         <span class="technology">Go, Tendermint, Blockchain, Protocol Buffers, Kubernetes</span>
       </header>
-      <p>
-      I was working on the Tendermint framework <a href="https://github.com/iov-one/weave">weave</a>, a competitor to the Cosmos SDK for the Go language,
-      that was taking a fresh and unique approach to processing events and maintaining blockchain.
-      In parallel to building the weave framework, I was contributing to applications based on that framework.
-      </p>
+      <p>Contributed to the development of the <a href="https://github.com/iov-one/weave">weave</a> framework, a Go-based blockchain platform alternative to the Cosmos SDK, distinguished by its innovative approach to event processing and blockchain maintenance.</p>
+      <p>In addition to framework development, actively participated in building applications based on the weave framework.</p>
     </article>
 
 
     <article>
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">thermondo</span>
+          <span class="job-title freelancer">Freelancer</span>
           <span class="duration">Sep 2019 - Nov 2019</span>
-          <span class="freelancer">freelancer</span>
         </span>
         <span class="technology">Python, Django, PostgreSQL, dramatiq, Salesforce, Heroku</span>
       </header>
-      <p>
-      My task was to create an application that synchronizes email messages from GMail to the respective customer accounts in Salesforce.
-      </p>
+      <p>Developed an application to synchronize email messages from Gmail to corresponding customer accounts within Salesforce.</p>
     </article>
 
 
     <article>
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">solarisBank</span>
+          <span class="job-title">Senior Golang Developer</span>
           <span class="duration">May 2018 – Oct 2018</span>
         </span>
         <span class="technology">Go, PostgreSQL, OAuth2, Docker, Prometheus</span>
       </header>
-      <p>
-      Being part of the infrastructure team,
-      I was designing and building authentication and authorization infrastructure.
-      Authentication design was following banking requirements and was based on the OAuth2 specification.
-      </p>
+        <p>As a member of the infrastructure team, I designed and implemented an OAuth2-based authentication and authorization infrastructure, complying with the security rules required by banks.</p>
     </article>
 
 
     <article>
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Opinary</span>
+          <span class="job-title">Senior Software Developer</span>
           <span class="duration">Jun 2016 – Apr 2018</span>
         </span>
         <span class="technology">Go, Google Cloud, Big Table, PubSub, BigQuery, Redis, Python, Kubernetes</span>
       </header>
-      <p>
-      Joining Opinary in its early stage, I was trusted with understanding and rewriting the existing proof of concept Python application.
-      The new architecture and implementation allowed the company to cut costs and handle an order of magnitude more traffic.
-      This change allowed migrating the application from a toy implementation to a product capable of handling HTTP traffic coming from major German newspaper news publisher sites.
-      </p>
-      <p>
-      As part of extending our functionality, I helped design and implement pipelines for our machine learning and automation services.
-      </p>
+      <p>Joined Opinary during its early stages and was entrusted with understanding and refactoring the existing Python proof-of-concept application. The redesigned architecture and implementation significantly reduced costs and increased traffic handling capacity by an order of magnitude. This transformation enabled the application to evolve from a prototype to a robust product capable of processing HTTP traffic from major German newspaper news publisher sites.</p>
+      <p>In addition to core application development, contributed to the design and implementation of pipelines for machine learning and automation services.</p>
     </article>
 
     <article class="old">
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Optiopay</span>
+          <span class="job-title">Senior Full Stack Developer</span>
           <span class="duration">Jan 2015 – May 2016</span>
         </span>
         <span class="technology"> Go, Kafka, Event Sourcing, Fleet, Docker, Protocol Buffers<span>
       </header>
-      <p>
-      Joined a small team to build an online transactions platform from scratch.
-      The application was working as a group of microservices communicating asynchronously through event sourcing.
-      </p>
-      <p>
-      Because we decided to use Go and Docker containers running on CoreOS, that at the time provided incomplete tooling,
-      we also developed our own infrastructure for managing our application.
-      </p>
+      <p>Joined a small team to develop an online transactions platform from the ground up. The application was architected as a cluster of microservices interacting asynchronously through event sourcing.</p>
+      <p>Due to the early stage adoption of Go and Docker containers on CoreOS, which lacked comprehensive tooling at the time, we also developed custom infrastructure for managing our application.</p>
     </article>
     <article class="old">
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">42reports</span>
+          <span class="job-title freelancer">Freelancer</span>
           <span class="duration">Dec 2013 – Dec 2014</span>
-          <span class="freelancer">freelancer</span>
         </span>
         <span class="technology">Python, Django, PostgreSQL, PL/pgSQL, RabbitMQ, Tornado, Salt</span>
       </header>
-      <p>
-      Our application was gathering mobile devices signal from access points deployed in various shopping centers across Germany. Collected data allowed us to determine location and movement of shoppers and optimize store operations.
-      </p>
-      <p>
-      In addition to maintaining the existing application,
-      to accommodate the increasing traffic, I have migrated the existing data aggregation and analysis implementation from Python to PL/pgSQL.
-      This included adding data partitioning and writing test framework to review PL/pgSQL code.
-      Changes allowed to scale the platform to processing hundreds of millions of data points every day.
-      </p>
+      <p>Our application collected mobile device signals from access points deployed in various German shopping centers. The aggregated data enabled us to determine shopper locations and movement patterns, optimizing store operations.</p>
+      <p>In addition to maintaining the existing application, I migrated the data aggregation and analysis components from Python to PL/pgSQL to handle the rapidly increasing traffic. This involved implementing data partitioning and developing a test framework for PL/pgSQL code.</p>
     </article>
     <article class="old">
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Gentianes Solutions Ltd</span>
+          <span class="job-title freelancer">Freelancer</span>
           <span class="duration">Apr 2013 – Oct 2013</span>
-          <span class="freelancer">freelancer</span>
         </span>
         <span class="technology">CoffeeScript, Backbone.js, Django, Heroku, PostgreSQL</span>
       </header>
-      <p>
-      Working closely with the founders, I have followed the design to transform the muchbetteradventures.com site into a Single Page App, and allow customers to book the best adventures with only few clicks.
-      </p>
+      <p>Collaborated closely with the founders of muchbetteradventures.com to implement a Single Page Application design. This transformation streamlined the user experience, enabling customers to book adventures with minimal clicks.</p>
     </article>
     <article class="old">
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Hogarth Worldwide</span>
+          <span class="job-title">Software Developer</span>
           <span class="duration">Sep 2012 – Feb 2013</span>
         </span>
         <span class="technology">Python, Javascript, Django, PostgreSQL, Lucene</span>
       </header>
-      <p>
-      As part of a big team, we were developing a meta-application for content management.
-      Two highlight functionalities that I helped to deliver were
-      a highly customizable email sending functionality,
-      and an event system which enabled new ways to configure and interact with the system.
-      </p>
+      <p>As part of a large team, contributed to the development of a meta-application for content management. Key responsibilities included developing a highly customizable email sending feature and implementing an event system to enhance configuration and interaction capabilities.</p>
     </article>
     <article class="old">
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Starmeo</span>
+          <span class="job-title">Software Developer</span>
           <span class="duration">May 2012 – Aug 2012</span>
         </span>
         <span class="technology">Python, Django, Amazon, MySQL, Backbone.js, jQuery</span>
       </header>
-      <p>
-      Development of the Starmeo social platform.
-      Big part of it was to explore how to increase attractivness of the UI, by adding dynamic components.
-      </p>
+      <p>Contributed to the development of the Starmeo social platform. A significant focus was on enhancing User Interface attractiveness through the integration of dynamic components.</p>
     </article>
     <article class="old">
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">10clouds</span>
+          <span class="job-title">Software Developer</span>
           <span class="duration">Oct 2010 – Feb 2012</span>
         </span>
         <span class="technology">Python, Django, Amazon, Gevent, PostgreSQL, Google App Engine</span>
       </header>
-      <p>
-      I authored BeatTheMachine – Google App Engine powered application for gathering and rating web pages, with content validation using Amazon Mechanical Turk.
-      </p>
-      <p>
-      I worked on on mturk-tracker, an application that gathers information about tasks on Amazon Mechanical Truk.
-      Big part of the implementation was to rewrite the crawler and the parser, together with optimizing interactions with the database.
-      </p>
-      <p>
-      I was working on Tagasauris project - an application that collects and creates various metadata for given set of media objects (photo, audio, video).
-      The crucial part of the system was a custom implementation of an offline task manager with Amazon SQS as one of the engines.
-      Another important component of the application was an high performance counter server implemented using gevent library.
-      </p>
-      <p>
-      My last contribution at 10clouds was a Simple Page App form wizard that allowed non-technical users to easily create and configure HTML forms.
-      </p>
+      <p>Developed BeatTheMachine, a Google App Engine application for web page collection and rating, incorporating content validation through Amazon Mechanical Turk.</p>
+      <p>Contributed to mturk-tracker, an application for gathering Amazon Mechanical Turk task information. Key responsibilities included refactoring the crawler and parser, as well as optimizing database interactions.</p>
+      <p>Participated in the Tagasauris project, which focused on collecting and generating metadata for media objects (photos, audio, videos). Developed a custom offline task manager utilizing Amazon SQS and implemented a high-performance counter server using the gevent library.</p>
+      <p>Developed a Simple Page App form wizard that empowered non-technical users to create and configure HTML forms with ease.</p>
     </article>
     <article class="old">
       <header>
-        <span>
+        <span class="first-line">
           <span class="company">Sensi Soft</span>
+          <span class="job-title">Junior Software Developer</span>
           <span class="duration"> Mar 2009 – Sep 2010</span>
         </span>
         <span class="technology">Python, Django, Twisted, Tornado, Riak, Solr, JavaScript</span>
       </header>
-      <p>
-      I was working on an online E-commerce platform, deployed by multiple customers in various countries.
-      </p>
+      <p>Contributed to the development of an online e-commerce platform deployed across multiple countries.</p>
+    </article>
+
+    <div class="sep"></div>
+
+    <h2>Education</h2>
+    <article>
+      <p>Bachelor’s degree in Computer Science from the <a href="https://www.wit.edu.pl/en/academy/about">WIT Academy</a> (Akademia WIT w Warszawie).</p>
     </article>
 
     <script>
